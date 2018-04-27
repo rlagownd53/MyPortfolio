@@ -1,0 +1,36 @@
+create table menu(
+menu_no number primary key,		--메뉴 번호
+type varchar2(30),				--메뉴 종류(밥, 국, 찌개, 볶음 등)
+name varchar2(600) not null,	--메뉴 이름
+price number not null,			--메뉴 가격
+op1_name varchar2(300),			--옵션 1번 이름
+op1_price number,				--옵션 1번 가격
+op2_name varchar2(300),
+op2_price number,
+op3_name varchar2(300),
+op3_price number,
+stat varchar2(30),				--판매 상태 분류(판매중, 판매중지)
+stat_grade varchar2(30),		--판매 등급(베스트 상품, 인기 상품, 일반 상품)
+--image_num varchar2(1000),		--이미지 번호 저장(1, 2, 3 ...)
+reg date
+);
+
+create sequence menu_seq;
+
+--sample data
+insert into menu values(
+menu_seq.nextval, '찌개','김치찌개',7500,'고기 추가',1500,
+'육수 추가',500,null,null,'판매중','인기 상품',sysdate
+);
+insert into menu values(
+menu_seq.nextval, '찌개','부대찌개',7500,'고기 추가',1500,
+'육수 추가',500,null,null,'판매중','일반 상품',sysdate
+);
+insert into menu values(
+menu_seq.nextval, '국','소고기국',7500,'고기 추가',2000,
+'육수 추가',500,null,null,'판매중지','일반 상품',sysdate
+);
+insert into menu values(
+menu_seq.nextval, '국','소고기 미역국',7500,'고기 추가',1500,
+'육수 추가',500,null,null,'판매중','베스트 상품',sysdate
+);

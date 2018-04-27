@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 어느 클래스에서 이용할 것인지에 대해 지정 -->
+<!-- <mapper namespace="spring.model.ImageDao"> -->
+<mapper namespace="idao">
+	<select id="seq" resultType="int">
+		select imageboard_seq.nextval from dual
+	</select>
+
+	<!-- 
+		insert 명령을 수행하는데... 
+		채워줄 데이터로 image형태가 들어온다(spring.model.Image) - parameterType
+	-->
+	<insert id="insert" parameterType="image">
+		insert into imageboard values(
+			#{id}, #{title}, #{savename}, #{origin}, #{type}, #{len}, sysdate
+		)
+	</insert>
+	
+	<!-- 
+		list 명령을 실행시키면 
+		결과로 image 형태의 데이터가 나온다(여러개든 아니든 형태가 중요!!!) 
+	-->
+	<select id="list" resultType="image">
+		select * from imageboard order by reg desc
+	</select>
+	
+	<!-- 
+		get을 실행하려면 parameter가 필요한데 이를 Map 형태로 받겠다
+		map에 id라는 이름의 데이터를 가지고 검색 조건을 설정하겠다
+		결과로는 image 형태의 데이터가 나온다
+	 -->
+	<select id="get" parameterType="map" resultType="image">
+		select * from imageboard 
+		<if test="id != null">
+			where id=#{id}
+		</if>
+	</select>
+	
+</mapper>

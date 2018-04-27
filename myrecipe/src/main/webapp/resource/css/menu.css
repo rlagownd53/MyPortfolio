@@ -1,0 +1,454 @@
+@charset "UTF-8";
+
+*{
+    font-family: "Verdana", monospace;
+}
+.page{
+    width: 1400px;
+   	margin:0px auto;
+}
+header, main, footer{
+	border-radius: 10px;
+    border:1px solid black;
+    padding:30px;
+}
+header{
+    min-height: 100px;
+}
+main{
+    min-height:700px;
+    text-align: center;
+    padding: 0;
+}
+footer{
+    min-height:100px;
+}
+nav.top-menu{
+    display:flex;
+    flex-direction: row;
+    vertical-align: middle;
+    align-items:center;
+}
+
+nav >ul #QnA ul {
+	list-style: none;
+    position: absolute;
+    display: none;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255,255,255,0.5);
+}
+
+nav > ul > #QnA:hover ul{
+	display: inline;
+}
+nav > ul > #QnA:hover ul li{
+	display: block;
+}
+/* nav.top-menu a{ */
+/*     text-decoration: none; */
+/*     font-size:25px; */
+/*     margin-right:1em; */
+/* } */
+img{
+    margin:0px auto;
+    vertical-align: middle;
+}
+
+/*추가*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    font-size:20px;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: white;
+}
+
+/* 홈페이지 전체적으로 사용할 공통 서식 디자인들 */
+
+/* 영역 비율 설정 */
+.area-100{ width: 100%; }
+.area-90{ width: 90%; }
+.area-85{ width: 85%; }
+.area-80{ width: 80%; }
+.area-75{ width: 75%; }
+.area-70{ width: 70%; }
+.area-60{ width: 60%; }
+.area-50{ width: 50%; }
+.area-40{ width: 40%; }
+.area-30{ width: 30%; }
+.area-20{ width: 20%; }
+.area-10{ width: 10%; }
+
+/* 여백용 row */
+.empty-row{
+    display: block;
+    width:100%;
+    height:50px;
+}
+
+/* 테두리 설정 */
+.line-blue{ border:1px solid blue; }
+.line-black{ border:1px solid black; }
+.line-red{ border:1px solid red; }
+
+/* 입력창 설정 */
+.user-input, .user-area{
+    padding:10px;
+    font-size:20px;
+    outline:none;
+    border:1px solid black;
+    border-radius : 15px;
+}
+.user-input:focus, .user-area:focus{
+    border:1px solid blue;
+}
+.user-area{
+    resize: none;
+}
+
+.select_box {
+	height: 40px;
+}
+/* 버튼 설정 */
+/* .input-btn, .input-btn-negative{ */
+/*     padding:10px; */
+/*     font-size:20px; */
+/*     background-color: rgb(208, 255, 255); */
+/*     color:black; */
+/* } */
+/* .input-btn:hover{ */
+/*     background-color: rgb(200, 193, 253); */
+/* } */
+/* .input-btn-negative{ */
+/*     background-color: orangered !important; */
+/* } */
+/* .input-btn-negative:hover{ */
+/*     background-color: red !important; */
+/* } */
+
+.row{
+    display: block;
+/*     margin: 0px 0px; */
+}
+.center{
+    margin:0px auto;
+}
+.align-left{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.align-right{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+
+/* row에 들어갈 cell 속성 */
+.cell{
+   margin:auto 0;
+}
+
+/* 나머지 공간을 전부다 차지하는 속성(display:flex일 경우만) */
+.fill{
+    flex-grow: 1;
+}
+
+/* 테이블 속성 */
+.user-table{
+	border-collapse: separate;
+/*     border-collapse: collapse; */
+    margin: 40px auto;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-right: 0;
+}
+
+.user-table th, .user-table td{
+    font-size: 20px;
+    padding: 15px;
+}
+
+.user-table .title{
+    width:25%;
+    text-align: center;
+}
+
+.user-table .detail{
+    height: 250px;
+    vertical-align: top;
+}
+
+.user-table .left{
+    text-align: left;
+}
+
+.user-table .right{
+    text-align: right;
+}
+
+
+/* info 페이지 테이블 */
+.info-table{
+    border-collapse: collapse;
+    margin: 40px auto;
+    border-left: 0;
+    border-right: 0;
+}
+
+.info-table .title {
+	width:25%;
+    text-align: center;
+}
+
+.info-table .detail {
+	margin:0;
+	width: -webkit-fill-available;
+	height: 250px;
+    vertical-align: top;
+    border: 0;
+}
+
+.info-table tr td {
+	width: 100%;
+}
+
+.info-table th, .info-table td{
+    font-size: 20px;
+    padding: 10px;
+}
+
+
+/* 게시판 페이징 전용 스타일 */
+.paging-wrap{
+    margin: 0 auto;
+}
+.paging-wrap .paging-unit{
+    display: inline-block;
+    min-width: 10px;
+    font-size: 15px;
+    padding:10px;
+/*     border:1px solid black; */
+}
+
+/* .paging-wrap .active{ */
+/*     border: 1px solid red !important; */
+/*     background-color: lightyellow; */
+/* } */
+
+/* 링크 스타일 */
+a:link, a:visited{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    color: red;
+}
+
+/* 늘어나는 검색창 */
+.easing-input-30, .easing-input-40,
+.easing-input-50, .easing-input-70, .easing-input-80, .easing-input-90,
+.easing-input-100{
+    width: 100px;
+    border: 1px solid black;
+    outline: none;
+    padding:10px;
+    font-size: 20px;
+    
+/*    별도의 브라우저를 지정할 수도 있다(모든 브라우저의 사용을 위해서)*/
+/*    -webkit-transition:width 0.5s ease-in-out; */
+    transition: width 0.5s ease-in-out; 
+}
+
+.easing-input-30:focus{width:30%;}
+.easing-input-40:focus{width:40%;}
+.easing-input-50:focus{width:50%;}
+.easing-input-70:focus{width:70%;}
+.easing-input-80:focus{width:80%;}
+.easing-input-90:focus{width:90%;}
+.easing-input-100:focus{width:100%;}
+
+
+
+.page_header{
+	display: inline-block;
+    width: 100%;
+    padding: 20px 0px 40px 0px;
+    text-align: center;
+}
+
+/* list 페이지 맨 위 div속성 */
+.board_nav {
+/* 	border: 1px dotted;  */
+	width: 100%; 
+	height: 3em;
+	background-color: rgba(255,244,244,0.5);
+	line-height: 30px;
+}
+
+.board_nav_font {
+	font-size: 25px;
+	font-style: italic;
+	font-weight: lighter;
+	vertical-align: middle;	
+}
+.list_head {
+	margin-left: 0px;
+	width: 1200px;
+	padding: 10px;
+	text-align: center;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.list_no {
+	width: 10%;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.content_head {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid;	
+}
+
+.list_content {
+	padding: 0 10px;
+    text-align: left;
+}
+
+.list_title {
+	width: 80%;
+    display: inline-block;
+    margin-left: 5px;
+/*     text-align: left; */
+}
+
+.contents_wrapper {
+	border-top: 2px solid red;
+    border-bottom: 1px solid;
+}
+
+.contents_desc {
+	margin-left: 50px;
+    padding: 20px 20px 20px 20px;
+}
+
+.content_table {
+	width: 900px;
+	background-color: rgb(255, 238, 244);
+	margin-left: 200px;
+}
+
+/* 게시판 각 페이지의 버튼이 설정된 div 속성 */
+.btn_area {
+/* 	overflow: hidden; */
+    margin: 20px 0px 70px 10px;
+    text-align: right;
+}
+
+.left {
+    float: left;
+    margin-left : 0px;
+}
+
+.input-btn {
+	width: 60px;
+	height: 50px;
+	display: inline-block;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    color: graytext;
+    text-decoration: none;
+    line-height: normal;
+}
+
+
+/* list 페이지에서 체크박스와 라벨의 높이 맞추는 속성*/
+input[id="myQnA"] {
+	position: relative;
+	top: 2px;
+}
+
+input[type="checkbox"] {
+	position: relative;
+	top: 2px;
+}
+
+
+/* 질문 유형별로 검색 div 속성*/
+.q_nav {
+	display:inline;
+	margin-left: 10px;
+	font-size: 20px;
+	padding: 10px;
+	background-color: rgb(228,234,254);
+	font-family: monospace;
+	cursor: pointer;
+	border-radius: 20px;
+	color: black;
+}
+
+/* 맨위로 가기 버튼 */
+a.jcm-top {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+/*     background-color: rgba(50,50,50,0.5); */
+    background-color:#323232; opacity:0.5; filter:alpha(opacity=50); /*ie8 호환을 위한코드 위와 동일한 것임 호환필요없으면 한줄로 rgba적으면됨*/
+    z-index: 999;
+    display: none;
+}
+a.jcm-top:hover{background-color:#000}
+
+/* form태그가 기본적으로 가지고 있는 여백 없애기 */
+form {
+	margin: 0;
+	padding : 0;
+}
+
+
+
+/* .q_nav_wrap { */
+/* 	background-color: rgb(241,251,255); */
+/* 	height: 50px; */
+/* 	padding: 20 0 0 0; */
+/* } */
+
+/* info페이지 미리보기 */
+/* #preview{ */
+/* 	z-index: 9999; */
+/* 	position:absolute; */
+/* 	border:0px solid #ccc; */
+/* 	background:#333; */
+/* 	padding:1px; */
+/* 	display:none; */
+/* 	color:#fff; */
+/* } */

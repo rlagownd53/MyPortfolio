@@ -1,0 +1,63 @@
+@charset "EUC-KR";
+
+.order-header {
+    display: inline-block;
+    width: 100%;
+    padding: 20px 0px 60px 0px;
+    padding-bottom: 60px;
+    text-align: center;
+}
+
+.order-title {
+    font-size: 30px;
+    margin-bottom: 9px;
+}
+
+.order-subtitle {
+    font-size: 16px;
+}
+
+.order-header-line {
+    height: 2px;
+    background-color: #cc7772;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.order-info{
+	font-size : 20px;
+	margin-top: 50px;
+	margin-bottom: 10px;	
+}
+
+table.order-itemlist {
+    width: 100%;
+}
+
+table.orderinfo {
+    width: 100%;
+    margin-top: 20px;
+}
+
+table.orderinfo table tr{
+	padding: 0px;
+	height: 49px;
+}
+
+table.orderinfo table tr td{
+	font-size: 16px;
+	text-align: left;
+}
+
+table.orderinfo table tr td.info-label{
+	text-align: center;
+}
+
+#paybtn{
+    padding:7px 30px 7px 30px;
+	font-size: 15px;
+	font-weight:bold;
+}

@@ -1,0 +1,25 @@
+create table menu_order(
+no_order number primary key,
+no_member number not null,
+no_menu number not null,
+order_name varchar2(50) not null,
+tel varchar2(40) not null,
+menu_cnt number not null,
+op1_cnt number,
+op2_cnt number,
+op3_cnt number,
+post varchar2(256) not null,
+addr1 varchar2(256) not null,
+addr2 varchar2(256) not null,
+order_date varchar2(60) not null,
+want_date varchar2(60) not null,
+real_date varchar2(60),
+stat varchar2(60),
+comments varchar2(300),
+totalprice number not null
+);
+
+create sequence order_seq;
+
+alter table menu_order add constraints fk_order foreign key(no_member) references member(no);
+alter table menu_order add constraints fk_order_menu foreign key(no_menu) references menu(menu_no);

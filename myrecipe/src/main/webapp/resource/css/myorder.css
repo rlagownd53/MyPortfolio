@@ -1,0 +1,73 @@
+@charset "EUC-KR";
+
+.wrapper{
+	
+}
+
+.order-header-line {
+    height: 2px;
+    background-color: #cc7772;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+.order-no{
+	display: inline-block;
+	margin: 10px;
+	width: 13%;
+	font-size: 15px;
+}
+
+.order-date{
+	display: inline-block;
+	margin: 10px;
+	width: 10%;
+	font-size: 15px;
+}
+
+.order-menu{
+	display: inline-block;
+	margin: 10px;
+	width: 18%;
+	font-size: 15px;
+}
+
+.order-price{
+	display: inline-block;
+	margin: 10px;
+	width: 7%;
+	font-size: 15px;
+}
+
+.order-stat{
+	display: inline-block;
+	margin: 10px;
+	width: 10%;
+	font-size: 15px;
+}
+
+
+.order-menudetail{
+	display: inline-block;
+	margin: 10px;
+	width: 10%;
+	font-size: 15px;
+}
+
+.order-cancle{
+	display: inline-block;
+	margin: 10px;
+	width: 10%;
+	font-size: 15px;
+}
+
+table.contents-table tr td.td-info{
+	width: 30%;
+}
+
+

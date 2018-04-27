@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+   xmlns:beans="http://www.springframework.org/schema/beans" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans.xsd 
+   http://www.springframework.org/schema/security 
+   http://www.springframework.org/schema/security/spring-security.xsd ">
+
+   <!-- 동시접속제한 -->
+   <!-- <http> <session-management> <concurrency-control max-sessions="1" /> 
+      </session-management> </http> -->
+
+   <http pattern="/**/*.js" security="none" />
+   <http pattern="/**/*.css" security="none" />
+   <http pattern="/image/*" security="none" />
+   <http pattern="/sign/**" security="none" />
+   <http pattern="/edit/**" security="none" />
+   <http pattern="/complete/**" security="none" />
+   <http pattern="/complete2/**" security="none" />
+   <http pattern="/replywrite/**" security="none" />
+   <http pattern="/order/**" security="none" />
+   <http pattern="/write/**" security="none" />
+   <http pattern="/write2/**" security="none" />
+   <http pattern="/pay/**" security="none" />
+   <http pattern="/cart/**" security="none" />
+   <http pattern="/delete/**" security="none" />
+   <http pattern="/passwordfind/**" security="none" />
+   <http pattern="/bwrite/**" security="none" />
+   <http pattern="/bedit/**" security="none" />
+   
+   
+   <http auto-config="true">
+      <access-denied-handler error-page="/error/errorpage" />
+      
+      <intercept-url pattern="/" access="permitAll" />
+      
+      <!-- 회원 페이지 -->
+<!--       <intercept-url pattern="/bwrite" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_user')" /> -->
+<!--       <intercept-url pattern="/bedit" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_user')" /> -->
+      
+      <!-- 관리자 페이지 -->
+      <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+      <intercept-url pattern="/mnqlist" access="hasRole('ROLE_ADMIN')" />
+      <intercept-url pattern="/memberlist" access="hasRole('ROLE_ADMIN')" />
+      <intercept-url pattern="/mmodi" access="hasRole('ROLE_ADMIN')" />
+      <intercept-url pattern="/olist" access="hasRole('ROLE_ADMIN')" />
+      <intercept-url pattern="/olist2" access="hasRole('ROLE_ADMIN')" />
+      <intercept-url pattern="/madd" access="hasRole('ROLE_ADMIN')" />
+      <intercept-url pattern="/mdetail" access="hasRole('ROLE_ADMIN')" />
+      <form-login login-page="/login" username-parameter="email"
+         password-parameter="password" authentication-success-forward-url="/login"
+         authentication-failure-forward-url="/login" />
+      <logout logout-success-url="/logout" invalidate-session="true"
+         delete-cookies="memberEmail" />
+      <remember-me remember-me-parameter="remember"
+         token-validity-seconds="1209600" />
+   </http>
+   <authentication-manager>
+      <authentication-provider>
+         <jdbc-user-service data-source-ref="dataSource"
+            users-by-username-query="select username,password, enabled from mysecurity where username=?"
+            authorities-by-username-query="select username,AUTHORITY FROM mysecurity WHERE username=? " />
+      </authentication-provider>
+   </authentication-manager>
+</beans:beans>

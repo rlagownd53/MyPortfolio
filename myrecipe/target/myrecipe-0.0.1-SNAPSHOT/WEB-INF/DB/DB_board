@@ -1,0 +1,13 @@
+create table board (
+board_no number primary key,
+name varchar2(30) not null,
+email varchar2(100) not null,
+category varchar2(20),
+title varchar2(300) not null,
+detail varchar2(4000) not null,
+pw varchar2(20) not null,
+read number not null,
+reg date not null
+);
+
+create sequence board_seq;

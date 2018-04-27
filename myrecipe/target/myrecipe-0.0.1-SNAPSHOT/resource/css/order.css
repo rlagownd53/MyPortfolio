@@ -1,0 +1,74 @@
+@charset "EUC-KR";
+
+.item-img {
+	float : left;
+	width : 50%;
+}
+
+.item-info{
+	float : right;
+	width : 50%;
+}
+
+.item-info .infolist {
+    width: 100%;
+    clear: both;
+    height: 23.2px;
+}
+
+.item_name {
+    overflow: hidden; /*박스보다 내용이 많으면 자름*/
+}
+
+.price {
+    padding-top: 50px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+}
+.price .discount {
+    font-size: 40px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 45px;
+    line-height: 45px;
+    width: 100px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.price .before_after {
+    display: inline-block;
+    position: relative;
+}
+
+.price .before {
+    position: absolute;
+    right: 0;
+    top: -30px;
+    color: lightgray;
+    font-size: 30px;
+    padding: 0 3px;
+    line-height: 30px;
+}
+
+.price .after {
+    overflow: hidden;
+    line-height: 45px;
+    position: relative;
+}
+
+#paybtn{
+    padding:7px 30px 7px 30px;
+	font-size: 15px;
+	font-weight:bold;
+}
+#cartbtn{
+	padding:7px 30px 7px 30px;
+	font-size: 15px;
+	font-weight:bold;
+}
+
+
+

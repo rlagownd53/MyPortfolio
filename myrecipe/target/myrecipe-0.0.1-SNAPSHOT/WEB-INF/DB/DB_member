@@ -1,0 +1,44 @@
+create table member(
+no number primary key,
+email varchar2(320) not null,
+password varchar2(320) not null,
+name varchar2(51) not null,
+phone number not null,
+post number not null,
+addr1 varchar2(300) not null,
+addr2 varchar2(300) not null,
+mile number default 0,
+auth varchar2(9) check(auth in ('일반','관리자')),
+reg date
+);
+create sequence member_seq;
+
+--관리자 이메일 admin@myrecipe.com 비밀번호 1234
+--sample data
+insert into member values(
+member_seq.nextval,
+'admin@myrecipe.com',
+'1234',
+'관리자',
+00012341234,
+1234,
+'관리자주소1',
+'관리자주소2' ,
+0,
+'관리자',
+sysdate
+);
+
+insert into member values(
+member_seq.nextval,
+'gksrldydsla@naver.com',
+'han1234',
+'한기용',
+00012341234,
+'1234',
+'테스트주소1',
+'테스트주소2',
+0,
+'일반',
+sysdate
+);

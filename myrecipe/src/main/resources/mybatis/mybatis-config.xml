@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- mybatis의 설정 내역을 기록하는 공간 -->
+<configuration>
+ 
+ 	<!-- settings : 실행시 마이바티스의 처리상태를 정의하는 값... -->
+ 	<settings>
+ 	
+ 		<!-- 조회 성능 향상을 위한 캐싱 설정 -->
+ 		<setting name="cacheEnabled" value="true"/>
+ 		<setting name="defaultExecutorType" value="REUSE"/>
+ 	
+ 		<!-- 데이터베이스 응답대기 만료시간 설정(10초) -->
+ 		<setting name="defaultStatementTimeout" value="10000"/>
+ 	
+ 	</settings>
+ 	
+ 	<!-- typeAliases : 내가 사용하는 주요 자료형에 별칭을 붙여 타이핑을 줄이도록 설정 -->
+ 	<typeAliases>
+ 		
+ 		<!-- spring.model.Image를 image라고 부르겠다 -->
+ 		<typeAlias type="recipe.model.board" alias="board"/>
+ 		
+ 		<!-- spring.model.ImageDao를 idao라고 부르겠다 -->
+ 		<typeAlias type="spring.model.BoardDao" alias="bdao"/>
+ 		
+ 	</typeAliases>
+ 
+</configuration>
+
+
+

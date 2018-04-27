@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+    
+    <!-- database.properties 와 같은 설정파일들을 불러오는 설정 -->
+    <context:property-placeholder location="/WEB-INF/*.properties"/>
+    
+	<!-- dataSource, sqlSessionFactory, sqlSessionTemplate -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${database.driver}"/>
+		<property name="url" value="${database.url}"/>
+		<property name="username" value="${database.username}"/>
+		<property name="password" value="${database.password}"/>
+		
+		<property name="maxTotal" value="${database.maxAction}"/>
+		<property name="maxIdle" value="${database.maxIdle}"/>
+		<property name="maxWaitMillis" value="${database.maxWait}"/>
+	</bean>
+
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<context:component-scan base-package="spring.model"/>
+	
+	
+	<!-- sqlSessionFactory : sqlSession을 생성/관리하는 bean -->
+<!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		필요한 정보 : dataSource, 설정파일, 매퍼 파일
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:/mybatis/mapper/**/*Mapper.xml"/>
+	</bean> -->
+	
+	<!-- sqlSessionTemplate : sqlSession을 이용해 DB에 접근하는 bean -->
+<!-- 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		필요한 정보 : sqlSessionFactory
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean> -->
+
+	<!-- 
+		Spring에서 제공하는 Transaction 관리 설정을 추가
+		 - 연속하여 DB를 갱신하는 작업(insert, update, delete)을 수행할 때 
+		 	중간에 오류 발생 시 이미 수행된 작업을 취소시키기 위한 처리를 담당 
+		 - 일반적으로 메소드 단위로 지정하며, service layer에서 주로 사용
+		 - 해당 메소드에 @Transactional 선언을 하여 구현
+	-->
+<!-- 	<context:annotation-config/>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean> -->
+
+</beans>
+
+
+
+
+
+
+

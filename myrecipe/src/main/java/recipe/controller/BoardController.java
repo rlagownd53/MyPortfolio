@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,17 +76,26 @@ public class BoardController {
 		}catch(Exception e) {
 			pageNo=1;
 		}
+		//한 페이지에 보여질 게시글 갯수
 		int boardSize = 10;
 		int boardCount = bdao.count(type, key, cg);
+		
+		//한 페이지에 보여질 게시글의 시작 번호
 		int start = boardSize * pageNo - boardSize+1;
+		//한 페이지에 보여질 게시글의 끝 번호
 		int end = start+boardSize-1;
 		if(end > boardCount) end = boardCount;
 		
 		List<BoardDto> list = bdao.list(type, key, cg, start, end);
 	
+		//네비게이터에 표시될 숫자 갯수
 		int blockSize = 10;
+		//총 페이지 수
 		int blockTotal = (boardCount + boardSize -1)/boardSize;
+		
+		//네비게이터 시작 번호
 		int startBlock = (pageNo -1) / blockSize * blockSize+1;
+		//네비게이터 끝 번호
 		int endBlock = startBlock + blockSize -1;
 		if(endBlock > blockTotal) endBlock = blockTotal;
 
@@ -180,7 +190,7 @@ public class BoardController {
 	public String info(HttpServletRequest request,
 					   @RequestParam("no") int no, 
 					   @RequestParam("auth") String auth,
-					   Model model) throws Exception {
+					   Model model, HttpServletResponse response) throws Exception {
 		String ckValue=null;
 		Cookie[] ck =  request.getCookies();
 		if(ck != null) {

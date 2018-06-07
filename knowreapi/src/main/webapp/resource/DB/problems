@@ -1,0 +1,15 @@
+create table problems(
+problem_text clob,
+type number,
+choices clob,
+answer clob
+);
+
+
+create table results(
+problem_id number,
+answer clob,
+result number
+);
+
+

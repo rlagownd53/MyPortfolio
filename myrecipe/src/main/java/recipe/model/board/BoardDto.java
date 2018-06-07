@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
-import antlr.StringUtils;
 
 public class BoardDto {
 	private int no;

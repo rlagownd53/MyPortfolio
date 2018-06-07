@@ -55,7 +55,13 @@
 		});
 	});
 	function send() {
-		alert($(".problem1").val());
+		$.ajax({
+			url:"${pageContext.request.contextPath}/send",
+			dataType: "json",
+			success:function(result) {
+				
+			}
+		});
 	}
 </script>
 </html>	

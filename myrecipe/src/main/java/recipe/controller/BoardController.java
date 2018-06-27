@@ -118,7 +118,6 @@ public class BoardController {
 		model.addAttribute("blockTotal", blockTotal);
 		model.addAttribute("list", list);
 		
-		
 		return "board/list";
 	}
 	

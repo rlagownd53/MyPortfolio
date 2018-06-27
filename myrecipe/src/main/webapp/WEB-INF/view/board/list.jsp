@@ -57,7 +57,6 @@
 		}
 	}
 </script>
-
 <style>
 	.contents_wrapper {
 		border-top: 2px solid red;

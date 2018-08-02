@@ -87,21 +87,16 @@ public class MemberController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String Edit(MemberDto dto) {
 		boolean result = memberDaoImpl.edit(dto);
-//		if (result)
-//			log.info("수정 완료");
-//		else
-//			log.info("수정 실패");
 		return "redirect:/info";
 	}
 
 	/* 로그인 페이지 컨트롤러 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(HttpServletRequest request,HttpSession session) {
-		String error = request.getParameter("error");log.info(error);
+		String error = request.getParameter("error");
 		if(error == null) {
 			String referrer = request.getHeader("Referer");
 			request.getSession().setAttribute("prevPage", referrer);
-			//log.info("이전페이지"+referrer);
 		}
 		return "member/login";
 	}
@@ -109,18 +104,13 @@ public class MemberController {
 	public String Login(HttpServletResponse response, HttpSession session, HttpServletRequest request,
 			@RequestParam String email, @RequestParam String password) {
 		String rem = request.getParameter("remember");
-		//log.info("로그인 유지"+rem);
+
 		//이전 페이지 저장
 		String prevPage = (String) session.getAttribute("prevPage");
-		//log.info("저장된 이전페이지:"+prevPage);
 		boolean result = memberDaoImpl.login(email, password);
-		//log.info("result : "+result);
 		if (!result) {
-			//log.info("연결 실패 혹은 계정 없음");
 			return "redirect:/login?error=loginfalse";
 		} else {
-			//log.info("로그인 성공" + result);
-			//log.info(email + "님이 로그인하셨습니다");
 			//쿠키 생성
 			Cookie c = new Cookie("memberEmail", email);
 			c.setComment("회원 이메일");
@@ -139,12 +129,9 @@ public class MemberController {
 				//아니면 이전 페이지로
 			}else {
 				String uri = request.getHeader("Referer");
-				log.info("uri:"+uri);
 				if(uri.contains("login")) {
-					//log.info("이전페이지가 login일 경우");
 					return "redirect:/";
 				}else {
-					//log.info("이동할 페이지"+prevPage);
 					return prevPage;
 				}
 			}
@@ -192,9 +179,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/passwordfind", method = RequestMethod.GET)
 	public String passwordfind(@RequestParam String email) {
-		log.info("이메일:" + email);
 		boolean res = memberDaoImpl.signcheck(email);
-		log.info("결과값:" + res);
 		return "member/login";
 	}
 }

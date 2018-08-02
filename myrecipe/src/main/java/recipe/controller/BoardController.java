@@ -1,6 +1,7 @@
 package recipe.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.List;
@@ -26,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import net.sf.jmimemagic.Magic;
+import net.sf.jmimemagic.MagicException;
 import net.sf.jmimemagic.MagicMatchNotFoundException;
+import net.sf.jmimemagic.MagicParseException;
 import recipe.model.board.BoardDao;
 import recipe.model.board.BoardDto;
 import recipe.model.board.ReplyDao;
@@ -146,6 +149,18 @@ public class BoardController {
 		    model.addAttribute("auth", auth);
 		}
 		return "board/write";
+	}
+	
+	public boolean imgCheck(String mime) throws MagicMatchNotFoundException {
+		boolean flag = true;
+		switch (mime) {
+            case "image/gif": break;
+            case "image/jpeg": break;
+            case "image/jpg": break;
+            case "image/png": break;
+            default: flag = false; throw new MagicMatchNotFoundException("GIF, JPG, PNG만 업로드가 가능합니다.");
+		}
+		return flag;
 	}
 	
 	@RequestMapping(value="/bwrite", method=RequestMethod.POST)
@@ -279,6 +294,66 @@ public class BoardController {
 		//이미지를 바꾼 경우
 		if(title!="") {
 			String mime = Magic.getMagicMatch(file.getBytes()).getMimeType();
+			boolean check = imgCheck(mime);
+			
+			BoardDto bdto = new BoardDto(request);
+			bdto.setFilename(title);
+			bdto.setFilesize(size);
+			bdto.setFiletype(mime);
+			no = bdao.edit(bdto);
+			
+			if(origin!=null) {
+				File target = new File(save, origin);
+				//f==null이면 target유지, f!=null이면 target삭제
+				if(file!=null) {
+					target.delete();
+					target = new File(save, title);
+				}
+			}
+			File target = new File(save, title);
+			if(!target.exists()) target.mkdirs();
+			file.transferTo(target);
+			
+			model.addAttribute("auth", request.getParameter("auth"));
+			return "redirect:/binfo?no="+no;
+		} else{	//기존에 이미지가 있고 새로 첨부한 이미지는 없는 경우
+			if(origin!=null) {
+				BoardDto bdto = bdao.info(num);
+				size = bdto.getFilesize();
+				String type = bdto.getFiletype();
+				
+				bdto = new BoardDto(request);
+				bdto.setFilename(origin);
+				bdto.setFilesize(size);
+				bdto.setFiletype(type);
+				no = bdao.edit(bdto);
+				
+				model.addAttribute("auth", request.getParameter("auth"));
+				return "redirect:/binfo?no="+no;
+			} else {
+				no = bdao.edit(new BoardDto(request));
+				model.addAttribute("auth", request.getParameter("auth"));
+				return "redirect:/binfo?no="+no;
+			}
+		} 
+	}
+	
+	/*@RequestMapping(value="/bedit", method=RequestMethod.POST)
+	public String edit(MultipartHttpServletRequest request,
+					   @RequestParam("board_no") int num, Model model) throws Exception {
+		int no = 0;
+		MultipartFile file = request.getFile("file");
+		//바꿀 사진 
+		String title = file.getOriginalFilename();
+		long size = file.getSize();
+		
+		//기존의 사진
+		String origin = request.getParameter("origin");
+		String save = request.getServletContext().getRealPath("/file/"+request.getParameter("name"));
+		
+		//이미지를 바꾼 경우
+		if(title!="") {
+			String mime = Magic.getMagicMatch(file.getBytes()).getMimeType();
 			switch (mime) {
 	            case "image/gif": break;
 	            case "image/jpeg": break;
@@ -327,7 +402,7 @@ public class BoardController {
 				return "redirect:/binfo?no="+no;
 			}
 		} 
-	}
+	}*/
 	
 	@RequestMapping("/bdelete")
 	public String delete(HttpServletRequest request,

@@ -22,8 +22,8 @@
 						type="email" class="form-control" id="InputEmail" value="${email}">
 				</div>
 				<div class="form-group text-center">
-					<label for="InputPassword1" >비밀번호
-												<p id="res1"></p>
+					<label for="InputPassword1">비밀번호
+						<p id="res1"></p>
 					</label> 
 					<input name="password"
 						type="password" class="form-control" id="InputPassword1"
